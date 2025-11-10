@@ -53,7 +53,7 @@ ui <- fluidPage(
            numericInput("newtpt",
                         "New TPT",
                         value = NULL,
-                        width = '33%',
+                        width = '25%',
                         min = 0,
                         max = 6,
                         step = .1)
