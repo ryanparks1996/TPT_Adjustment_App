@@ -1,8 +1,6 @@
 # Load in libraries
 library(shiny)
 library(bslib)
-library(tools)
-library(readxl)
 library(dplyr)
 
 # Load helper functions
@@ -12,7 +10,7 @@ source('helpers.R')
 desired_col_name <- c("Profile", "Game", "Credits",	"MINUTES", "TPT")
 
 # Define UI for application that takes in an .xslx file, creates some summary
-# tables and allows user to create a theoretical store tpt
+# tables and allows the user to create a theoretical store tpt
 ui <- fluidPage(
   
   # App title 
@@ -23,9 +21,7 @@ ui <- fluidPage(
     "upload",
     "Upload weekly TPT report",
     multiple = FALSE,
-    accept = c(
-      ".xlsx"
-    )
+    accept = c(".xlsx")
   ),
   
   fluidRow(
@@ -35,7 +31,7 @@ ui <- fluidPage(
            tableOutput("report"),
     ),
     
-    # Adjusting store tpt by selecting game and typing in desired tpt
+    # Input: Adjusting store tpt by selecting game and typing in desired tpt
     # for that game
     column(width = 5,
            helpText("Select a game you want to adjust. Then type new tpt",
@@ -44,11 +40,13 @@ ui <- fluidPage(
            selectInput("gametoadjust",
                        "Select game",
                        choices = NULL,
-                       multiple = FALSE),
+                       multiple = FALSE
+                       ),
+           
            card(
              card_header("Current TPT:"),
              textOutput("currenttpt")
-           ),
+            ),
            
            numericInput("newtpt",
                         "New TPT",
@@ -56,29 +54,31 @@ ui <- fluidPage(
                         width = '25%',
                         min = 0,
                         max = 6,
-                        step = .1)
-    ),
+                        step = .1
+                        )
+           ),
     
     column(width = 3,
            card(
              card_header("New Theoretical TPT:"),
              textOutput("theoreticaltpt"))
-    )
-  ),
+           )
+    ),
   
   # Output: Top 5 Highest and Top 5 Lowest TPT
   fluidRow(
     column(width = 6,
            helpText("Top 5 Highest and Top 5 Lowest TPT"),
            tableOutput("badtpts")
-    ),
+           ),
+    
     # Output: Top 10 Games With Largest Impact on Average TPT
     column(width = 6,
            helpText("Top 10 Games With Largest Impact on Average TPT"),
            tableOutput("badtptsweighted")
+           )
     )
   )
-)
 
 # Define server logic
 server <- function(input, output) {
