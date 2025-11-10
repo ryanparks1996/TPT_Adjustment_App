@@ -20,3 +20,6 @@ With this app, a technician will be able to quickly gain insights into their sto
 
 Quick note on how the theoretical TPT is calculated:  
 It will take the user-inputted TPT value and multiply it by the total number of times that game was played. The result will be a new total ticket payout. 
+
+Run this code remotely in any R enviroment using the runGitHub() function in any R environment. (Requires shiny package)  
+Copy and paste the following: shiny::runGitHub("TPT_Adjustment_App", "ryanparks1996")
