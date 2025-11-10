@@ -23,3 +23,5 @@ It will take the user-inputted TPT value and multiply it by the total number of 
 
 Run this code remotely in any R enviroment using the runGitHub() function in any R environment. (Requires shiny package)  
 Copy and paste the following: shiny::runGitHub("TPT_Adjustment_App", "ryanparks1996")
+
+A future version of this app could allow the user to adjust multiple game TPTs at once. From experience, adjusting one game is often enough.
